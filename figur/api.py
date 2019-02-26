@@ -11,10 +11,12 @@ from . import model
 from . import utils
 
 
+path = utils.cached(utils.URL)
+tagger = model.Model(path)
+
+
 def tag(text: str) -> pd.DataFrame:
     """Tag named entities in the text.
     """
-    path = utils.cached(utils.URL)
-    tagger = model.Model(path)
     tagged = utils.process(text, tagger)
     return pd.DataFrame(tagged)

@@ -14,14 +14,15 @@ from spacy.lang.de import German
 HOME = Path.home()
 CACHE_DIR = Path("models")
 CACHE_ROOT = Path(HOME, ".figur")
-URL = "https://link-zum-model-de"
+URL = "https://drive.google.com/figurenerkennung-0.0.1.pt"
 
 
-def cached(path: Path) -> Path:
+def cached(path: str) -> Path:
     """Download model and/or get filepath from cache.
     """
     cache = Path(CACHE_ROOT, CACHE_DIR)
     parsed = urllib.parse.urlparse(path)
+    path = Path(path)
 
     if parsed.scheme in {"https"}:
         return _get_from_cache(path, cache)
@@ -89,9 +90,10 @@ class Tqdm:
 
 def segment(text: str):
     nlp = German()
+    nlp.add_pipe(nlp.create_pipe("sentencizer"))
     document = nlp(text)
     for sentence in document.sents:
-        yield sentence.string.strip()
+        yield sentence.text
 
 
 def process(text: str, model):
@@ -100,8 +102,8 @@ def process(text: str, model):
               "Tag": list()}
     for n, sentence in enumerate(segment(text)):
         prediction = model.predict(sentence)
-        for word in prediction:
+        for word, tag in prediction:
             tagged["SentenceId"].append(n)
-            tagged["Token"].append(word["token"])
-            tagged["Tag"].append(word["tag"])
+            tagged["Token"].append(word)
+            tagged["Tag"].append(tag)
     return tagged

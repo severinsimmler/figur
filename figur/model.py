@@ -21,5 +21,7 @@ class Model:
         """
         s = Sentence(sentence)
         self.tagger.predict(s)
-        for word in s:
-            yield s["token"], s["tag"]
+        for token in s.tokens:
+            tag = token.get_tag("ner").value
+            word = token.text
+            yield word.strip(), tag if tag != "word" else "_"
