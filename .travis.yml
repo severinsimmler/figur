@@ -12,4 +12,4 @@ install:
   - pipenv install --dev
 
 script:
-  - python -m pytest
+  - pipenv run python -m pytest
