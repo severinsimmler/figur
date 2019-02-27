@@ -14,30 +14,28 @@ from spacy.lang.de import German
 HOME = Path.home()
 CACHE_DIR = Path("models")
 CACHE_ROOT = Path(HOME, ".figur")
-URL = "https://drive.google.com/figurenerkennung-0.0.1.pt"
+RESOURCE = {"filename": "figurenerkennung-0.0.1.pt",
+            "url": "https://drive.google.com/uc?export=download&id=1UskLtU2aRm6los-zxl4lDRgMRfyV91LX"}
 
 
 def cached(path: str) -> Path:
-    """Download model and/or get filepath from cache.
-    """
     cache = Path(CACHE_ROOT, CACHE_DIR)
     parsed = urllib.parse.urlparse(path)
-    path = Path(path)
 
     if parsed.scheme in {"https"}:
         return _get_from_cache(path, cache)
-    elif not parsed.scheme and path.exists():
+    elif not parsed.scheme and Path(path).exists():
         return Path(path)
-    elif not parsed.scheme and not path.exists():
+    elif not parsed.scheme and not Path(path).exists():
         raise FileNotFoundError(f"File {path} does not exist.")
     else:
         raise ValueError(f"Unable to parse {path} as URL or as local path.")
 
 
-def _get_from_cache(url: Path, cache: Path) -> Path:
+def _get_from_cache(url: str, cache: Path) -> Path:
     if not cache.exists():
         cache.mkdir(parents=True)
-    filepath = Path(cache, url.name)
+    filepath = Path(cache, RESOURCE["filename"])
 
     if filepath.exists():
         return filepath
@@ -46,24 +44,23 @@ def _get_from_cache(url: Path, cache: Path) -> Path:
     if response.status_code != 200:
         raise IOError(f"HEAD request failed for URL {url}.")
 
-    if not filepath.exists():
-        _, temp_filepath = tempfile.mkstemp()
-        logger.info(f"Downloading from {url} to {temp_filepath}.")
-        response = requests.get((url), stream=True)
-        content_length = response.headers.get("Content-Length")
-        total = int(content_length) if content_length else None
-        progress = Tqdm.tqdm(unit="B", total=total)
-        with open(temp_filename, "wb") as temp_file:
-            for chunk in req.iter_content(chunk_size=1024):
-                if chunk:
-                    progress.update(len(chunk))
-                    temp_file.write(chunk)
-        progress.close()
+    _, temp_filepath = tempfile.mkstemp()
+    logger.info(f"Downloading from {url} to {temp_filepath}.")
+    response = requests.get(url, stream=True)
+    content_length = response.headers.get("Content-Length")
+    total = int(content_length) if content_length else None
+    progress = Tqdm.tqdm(unit="B", total=total)
+    with open(temp_filepath, "wb") as temp_file:
+        for chunk in response.iter_content(chunk_size=1024):
+            if chunk:
+                progress.update(len(chunk))
+                temp_file.write(chunk)
+    progress.close()
 
-        logger.info(f"Copying {temp_filename} to cache at {filepath}.")
-        shutil.copyfile(temp_filename, str(filepath))
-        logger.info(f"Removing temp file {temp_filename}.")
-        os.remove(temp_filename)
+    logger.info(f"Copying {temp_filepath} to cache at {filepath}.")
+    shutil.copyfile(temp_filename, str(filepath))
+    logger.info(f"Removing temp file {temp_filename}.")
+    os.remove(temp_filepath)
     return filepath
 
 

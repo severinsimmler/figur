@@ -10,13 +10,13 @@ import pandas as pd
 from . import model
 from . import utils
 
-
-path = utils.cached(utils.URL)
-tagger = model.Model(path)
+URL = utils.RESOURCE["url"]
+PATH = utils.cached(URL)
+TAGGER = model.Model(PATH)
 
 
 def tag(text: str) -> pd.DataFrame:
     """Tag named entities in the text.
     """
-    tagged = utils.process(text, tagger)
+    tagged = utils.process(text, TAGGER)
     return pd.DataFrame(tagged)
