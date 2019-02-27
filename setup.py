@@ -1,12 +1,13 @@
 import io
 import os
+import shutil
 import sys
 import setuptools
 
 
-NAME = "library"
-DESCRIPTION = "Description"
-URL = "https://github.com/severinsimmler"
+NAME = "figur"
+DESCRIPTION = "Figurenerkennung for German literary texts."
+URL = "https://github.com/severinsimmler/figur"
 AUTHOR = "Severin Simmler"
 REQUIRES_PYTHON = ">=3.6.0"
 VERSION = "0.0.1"
