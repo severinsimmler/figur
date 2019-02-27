@@ -10,7 +10,10 @@ URL = "https://github.com/severinsimmler"
 AUTHOR = "Severin Simmler"
 REQUIRES_PYTHON = ">=3.6.0"
 VERSION = "0.0.1"
-REQUIRED = [""]
+REQUIRED = ["flair>=0.4.1",
+            "gdown>=3.7.3",
+            "spacy>=2.0.18",
+            "pandas>=0.24.1"]
 
 
 with io.open("README.md", encoding="utf-8") as readme:

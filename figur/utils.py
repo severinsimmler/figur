@@ -1,11 +1,12 @@
-import os
-import logging
-import re
-import shutil
-import tempfile
+"""
+figur.utils
+~~~~~~~~~~~
+
+This module implements basic helper functions.
+"""
+
 import urllib
 from pathlib import Path
-from tqdm import tqdm as _tqdm
 
 import gdown
 from spacy.lang.de import German
