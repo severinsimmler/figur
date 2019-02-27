@@ -7,7 +7,7 @@ import urllib
 from pathlib import Path
 from tqdm import tqdm as _tqdm
 
-import requests
+import gdown
 from spacy.lang.de import German
 
 
@@ -15,7 +15,7 @@ HOME = Path.home()
 CACHE_DIR = Path("models")
 CACHE_ROOT = Path(HOME, ".figur")
 RESOURCE = {"filename": "figurenerkennung-0.0.1.pt",
-            "url": "https://drive.google.com/uc?export=download&id=1UskLtU2aRm6los-zxl4lDRgMRfyV91LX"}
+            "url": "https://drive.google.com/uc?export=download&confirm=7Eho&id=1UskLtU2aRm6los-zxl4lDRgMRfyV91LX"}
 
 
 def cached(path: str) -> Path:
@@ -35,54 +35,14 @@ def cached(path: str) -> Path:
 def _get_from_cache(url: str, cache: Path) -> Path:
     if not cache.exists():
         cache.mkdir(parents=True)
+
     filepath = Path(cache, RESOURCE["filename"])
 
     if filepath.exists():
         return filepath
 
-    response = requests.head(url)
-    if response.status_code != 200:
-        raise IOError(f"HEAD request failed for URL {url}.")
-
-    _, temp_filepath = tempfile.mkstemp()
-    logger.info(f"Downloading from {url} to {temp_filepath}.")
-    response = requests.get(url, stream=True)
-    content_length = response.headers.get("Content-Length")
-    total = int(content_length) if content_length else None
-    progress = Tqdm.tqdm(unit="B", total=total)
-    with open(temp_filepath, "wb") as temp_file:
-        for chunk in response.iter_content(chunk_size=1024):
-            if chunk:
-                progress.update(len(chunk))
-                temp_file.write(chunk)
-    progress.close()
-
-    logger.info(f"Copying {temp_filepath} to cache at {filepath}.")
-    shutil.copyfile(temp_filename, str(filepath))
-    logger.info(f"Removing temp file {temp_filename}.")
-    os.remove(temp_filepath)
+    gdown.download(url, str(filepath), quiet=False)
     return filepath
-
-
-class Tqdm:
-    default_mininterval: float = 0.1
-
-    @staticmethod
-    def set_default_mininterval(value: float) -> None:
-        Tqdm.default_mininterval = value
-
-    @staticmethod
-    def set_slower_interval(use_slower_interval: bool) -> None:
-        if use_slower_interval:
-            Tqdm.default_mininterval = 10.0
-        else:
-            Tqdm.default_mininterval = 0.1
-
-    @staticmethod
-    def tqdm(*args, **kwargs):
-        new_kwargs = {"mininterval": Tqdm.default_mininterval,
-                      **kwargs}
-        return _tqdm(*args, **new_kwargs)
 
 
 def segment(text: str):
