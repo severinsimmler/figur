@@ -1,6 +1,3 @@
-import sys
-sys.path.insert(0, "..")
-
 import pytest
 import figur
 
@@ -8,7 +5,7 @@ import figur
 TEXT = "Der Gärtner entfernte sich eilig, und Eduard folgte bald."
 
 def test_tagging():
-    tagged = figur.tag(text)
+    tagged = figur.tag(TEXT)
     counts = tagged["Tags"].value_counts()
     assert counts["AppTdfW"] == 1
     assert counts["pron"] == 1

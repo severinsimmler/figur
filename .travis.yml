@@ -8,4 +8,4 @@ install:
     - pipenv install --dev
 
 script:
-    - pytest
+    - python -m pytest
