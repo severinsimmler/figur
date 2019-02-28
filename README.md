@@ -8,6 +8,9 @@ Usually NER models are not designed for literary texts resulting in poor recall.
 
 
 ## Figurenerkennung statistics
+
+This is based on the test set of 55,868 tokens.
+
 <table>
   <thead>
     <tr>
