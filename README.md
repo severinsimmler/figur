@@ -4,7 +4,7 @@
 
 An important starting point for the quantitative analysis of narrative texts is the automatic recognition of references to figures, a special case of the generic NLP problem of Named Entity Recognition (NER).
 
-Usually NER models are not designed for literary texts resulting in poor recall. This easy-to-use package is the continuation of the work of [Jannidis et al.](https://opus.bibliothek.uni-wuerzburg.de/opus4-wuerzburg/frontdoor/deliver/index/docId/14333/file/Jannidis_Figurenerkennung_Roman.pdf), using state-of-the-art techniques from the field of Deep Learning reaching a Micro F1-Score of 95.89 and a Macro F1-Score of 67.74.
+Usually NER models are not designed for literary texts resulting in poor recall. This easy-to-use package is the continuation of the work of [Jannidis et al.](https://opus.bibliothek.uni-wuerzburg.de/opus4-wuerzburg/frontdoor/deliver/index/docId/14333/file/Jannidis_Figurenerkennung_Roman.pdf), using state-of-the-art techniques from the field of Deep Learning reaching a Micro F1-Score of **95.89** and a Macro F1-Score of **67.74**.
 
 <table>
   <thead>
