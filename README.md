@@ -6,10 +6,57 @@ An important starting point for the quantitative analysis of narrative texts is 
 
 Usually NER models are not designed for literary texts resulting in poor recall. This easy-to-use package is the continuation of the work of [Jannidis et al.](https://opus.bibliothek.uni-wuerzburg.de/opus4-wuerzburg/frontdoor/deliver/index/docId/14333/file/Jannidis_Figurenerkennung_Roman.pdf), using state-of-the-art techniques from the field of Deep Learning.
 
-| Micro F1-Score | 95.89 |
-|----------------|-------|
-| Macro F1-Score | 67.74 |
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>TP</th>
+      <th>FP</th>
+      <th>FN</th>
+      <th>TN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AppA</th>
+      <td>2</td>
+      <td>2</td>
+      <td>288</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>AppTdfW</th>
+      <td>418</td>
+      <td>131</td>
+      <td>383</td>
+      <td>418</td>
+    </tr>
+    <tr>
+      <th>Core</th>
+      <td>626</td>
+      <td>114</td>
+      <td>211</td>
+      <td>626</td>
+    </tr>
+    <tr>
+      <th>pron</th>
+      <td>2284</td>
+      <td>604</td>
+      <td>766</td>
+      <td>2284</td>
+    </tr>
+    <tr>
+      <th>\_</th>
+      <td>52538</td>
+      <td>1546</td>
+      <td>749</td>
+      <td>52538</td>
+    </tr>
+  </tbody>
+</table>
 
+| Micro F1-Score | 95.89 |
+| Macro F1-Score | 67.74 |
 
 ## Installation
 
