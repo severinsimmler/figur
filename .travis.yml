@@ -12,4 +12,5 @@ install:
   - pipenv install --dev
 
 script:
+  - export BOTO_CONFIG=/dev/null
   - pipenv run python -m pytest
