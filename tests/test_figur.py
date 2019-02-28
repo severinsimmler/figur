@@ -10,4 +10,4 @@ def test_tagging():
     assert counts["AppTdfW"] == 1
     assert counts["pron"] == 1
     assert counts["Core"] == 1
-    assert counts["_"] == 8
+    assert counts["_"] == 6

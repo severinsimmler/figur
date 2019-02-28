@@ -1,8 +1,8 @@
 """
-Figurenerkennung for German literary texts.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Figurenerkennung for German literary texts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-figur is very easy to use:
+`figur` is very easy to use:
 
 ```
 >>> import figur
