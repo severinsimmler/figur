@@ -10,7 +10,7 @@ DESCRIPTION = "Figurenerkennung for German literary texts."
 URL = "https://github.com/severinsimmler/figur"
 AUTHOR = "Severin Simmler"
 REQUIRES_PYTHON = ">=3.6.0"
-VERSION = "0.0.2"
+VERSION = "0.0.3"
 REQUIRED = ["flair>=0.4.1",
             "gdown>=3.7.3",
             "spacy>=2.0.18",
