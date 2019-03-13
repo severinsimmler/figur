@@ -12,7 +12,7 @@ Figurenerkennung for German literary texts
 0           0        Der        _
 1           0    Gärtner  AppTdfW
 2           0  entfernte        _
-3           0       sich     pron
+3           0       sich     Pron
 4           0     eilig,        _
 5           0        und        _
 6           0     Eduard     Core
