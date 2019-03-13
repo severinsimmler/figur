@@ -7,15 +7,12 @@ An important step in the quantitative analysis of narrative texts is the automat
 Usually NER models are not designed for literary texts resulting in poor recall. This easy-to-use package is the continuation of the work of [Jannidis et al.](https://opus.bibliothek.uni-wuerzburg.de/opus4-wuerzburg/frontdoor/deliver/index/docId/14333/file/Jannidis_Figurenerkennung_Roman.pdf) using techniques from the field of Deep Learning.
 
 
-## Figurenerkennung statistics
-![Confusion Matrix](doc/confusion-matrix.svg)
-
-
 ## Installation
 
 ```
 $ pip install figur
 ```
+
 
 ## Example
 
@@ -34,3 +31,7 @@ $ pip install figur
 7           0     folgte        _
 8           0      bald.        _
 ```
+
+
+## Figurenerkennung statistics
+![Confusion Matrix](doc/confusion-matrix.svg)
