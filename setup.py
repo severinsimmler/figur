@@ -6,7 +6,7 @@ import setuptools
 
 
 NAME = "figur"
-DESCRIPTION = "Figurenerkennung for German literary texts."
+DESCRIPTION = "Figurenerkennung for German literary texts"
 URL = "https://github.com/severinsimmler/figur"
 AUTHOR = "Severin Simmler"
 REQUIRES_PYTHON = ">=3.6.0"
