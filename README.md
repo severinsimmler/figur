@@ -1,6 +1,9 @@
 # Figurenerkennung for German literary texts
 
 [![Build Status](https://travis-ci.com/severinsimmler/figur.svg?branch=master)](https://travis-ci.com/severinsimmler/figur)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2592359.svg)](https://doi.org/10.5281/zenodo.2592359)
+
+
 
 An important step in the quantitative analysis of narrative texts is the automatic recognition of references to figures, a special case of the generic NLP problem of Named Entity Recognition (NER).
 
