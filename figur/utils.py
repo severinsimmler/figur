@@ -8,42 +8,30 @@ This module implements basic helper functions.
 import urllib
 from pathlib import Path
 
-import gdown
 from spacy.lang.de import German
+
+from . import zenodo
 
 
 HOME = Path.home()
 CACHE_DIR = Path("models")
 CACHE_ROOT = Path(HOME, ".figur")
 RESOURCE = {"filename": "figurenerkennung-0.0.1.pt",
-            "url": "https://drive.google.com/uc?export=download&confirm=7Eho&id=1UskLtU2aRm6los-zxl4lDRgMRfyV91LX"}
+            "doi": "10.5281/zenodo.2592325"}
 
 
 def cached(path: str) -> Path:
-    cache = Path(CACHE_ROOT, CACHE_DIR)
-    parsed = urllib.parse.urlparse(path)
-
-    if parsed.scheme in {"https"}:
-        return _get_from_cache(path, cache)
-    elif not parsed.scheme and Path(path).exists():
-        return Path(path)
-    elif not parsed.scheme and not Path(path).exists():
-        raise FileNotFoundError(f"File {path} does not exist.")
+    cache = Path(CACHE_ROOT, CACHE_DIR, path)
+    if cache.exists():
+        return cache
     else:
-        raise ValueError(f"Unable to parse {path} as URL or as local path.")
+        return _get_from_cache(RESOURCE["doi"], cache)
 
 
-def _get_from_cache(url: str, cache: Path) -> Path:
-    if not cache.exists():
-        cache.mkdir(parents=True)
-
-    filepath = Path(cache, RESOURCE["filename"])
-
-    if filepath.exists():
-        return filepath
-
-    gdown.download(url, str(filepath), quiet=False)
-    return filepath
+def _get_from_cache(doi: str, cache: Path) -> Path:
+    if not cache.parent.exists():
+        cache.parent.mkdir(parents=True)
+    return zenodo.download(doi, str(cache))
 
 
 def segment(text: str):

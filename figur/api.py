@@ -11,8 +11,8 @@ from . import model
 from . import utils
 
 
-URL = utils.RESOURCE["url"]
-PATH = utils.cached(URL)
+FILENAME = utils.RESOURCE["filename"]
+PATH = utils.cached(FILENAME)
 TAGGER = model.Model(PATH)
 
 

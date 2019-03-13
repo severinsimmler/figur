@@ -9,7 +9,8 @@ pytest = "*"
 [packages]
 flair = "*"
 spacy = "*"
-gdown = "*"
+wget = "*"
+requests = "*"
 pandas = "*"
 
 [requires]
