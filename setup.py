@@ -15,7 +15,8 @@ REQUIRED = ["flair>=0.4.1",
             "spacy>=2.0.18",
             "pandas>=0.24.1",
             "wget>=3.2",
-            "requests>=2.21.0"]
+            "requests>=2.21.0",
+            "pytorch-pretrained-bert<=0.6.1"]
 
 
 with io.open("README.md", encoding="utf-8") as readme:
