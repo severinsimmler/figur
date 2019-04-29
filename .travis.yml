@@ -9,10 +9,9 @@ python:
 
 install:
   - pip install pipenv
+  - export PIPENV_VERBOSITY=-1
   - pipenv install --dev
 
 script:
-  - export PIPENV_VERBOSITY=-1
   - export BOTO_CONFIG=/dev/null
-  - pip list
   - pipenv run python -m pytest

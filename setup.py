@@ -10,12 +10,13 @@ DESCRIPTION = "Figurenerkennung for German literary texts"
 URL = "https://github.com/severinsimmler/figur"
 AUTHOR = "Severin Simmler"
 REQUIRES_PYTHON = ">=3.6.0"
-VERSION = "0.0.7"
+VERSION = "0.0.8"
 REQUIRED = ["flair>=0.4.1",
             "spacy>=2.0.18",
             "pandas>=0.24.1",
             "wget>=3.2",
             "requests>=2.21.0",
+            # pytorch-pretrained-bret v0.6.2 is somehow broken...
             "pytorch-pretrained-bert<=0.6.1"]
 
 
