@@ -11,11 +11,11 @@ URL = "https://github.com/severinsimmler/figur"
 AUTHOR = "Severin Simmler"
 REQUIRES_PYTHON = ">=3.6.0"
 VERSION = "0.0.7"
-REQUIRED = ["flair==0.4.1",
-            "spacy==2.0.18",
-            "pandas==0.24.1",
-            "wget==3.2",
-            "requests==2.21.0"]
+REQUIRED = ["flair>=0.4.1",
+            "spacy>=2.0.18",
+            "pandas>=0.24.1",
+            "wget>=3.2",
+            "requests>=2.21.0"]
 
 
 with io.open("README.md", encoding="utf-8") as readme:
