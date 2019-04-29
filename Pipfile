@@ -7,7 +7,7 @@ verify_ssl = true
 pytest = "*"
 
 [packages]
-figur = {editable = true,path = "./figur"}
+figur = {editable = true,path = "."}
 
 [requires]
 python_version = "3.7"
